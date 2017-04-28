@@ -7,8 +7,6 @@ class FramesController < ApplicationController
 
   # Show data for last frame
   def show
-    render json: {
-      hello: 'world'
-    }
+    render json: Frame.latest
   end
 end

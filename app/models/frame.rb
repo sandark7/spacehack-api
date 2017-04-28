@@ -12,9 +12,12 @@
 #
 
 class Frame < ApplicationRecord
+  THUMBOR_HOST_URI = 'http://localhost:8081/unsafe/meta/smart/'
   mount_uploader :photo, FrameUploader
 
   before_save :process_image, if: :fixture?
+
+  scope :latest, -> { order(:updated_at).first }
 
   def process_image
     remote_photo_url = ebay_url
@@ -22,5 +25,19 @@ class Frame < ApplicationRecord
 
   def fixture?
     ebay_url.present?
+  end
+
+  def focal_points
+    thumbor_meta.dig("thumbor", "focal_points").map do |point|
+      { x: point["x"], y: point["y"] }
+    end
+  end
+
+  def thumbor_url
+    "#{THUMBOR_HOST_URI}#{photo.url}"
+  end
+
+  def thumbor_meta
+    @thumbor_meta ||= FaradayConnection.get(thumbor_url).body
   end
 end

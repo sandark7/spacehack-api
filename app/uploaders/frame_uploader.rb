@@ -1,7 +1,7 @@
 class FrameUploader < CarrierWave::Uploader::Base
-  storage :file
+  storage :aws
 
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{model.id}"
+  def cache_dir
+    '/tmp/images_cache'
   end
 end

@@ -8,6 +8,11 @@ gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'carrierwave', '~> 1.0'
 gem 'annotate'
+gem 'faraday'
+gem 'faraday_middleware'
+gem 'carrierwave-aws'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'active_model_serializers', '~> 0.10.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'

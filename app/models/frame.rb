@@ -6,9 +6,9 @@
 #  photo      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  ebay_id    :integer
 #  ended_at   :datetime
 #  ebay_url   :string
+#  name       :string
 #
 
 class Frame < ApplicationRecord

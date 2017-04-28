@@ -20,3 +20,5 @@
 # Ignore Byebug command history file.
 .byebug_history
 .rake_tasks
+config/.DS_Store
+.DS_Store

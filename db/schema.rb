@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428175025) do
+ActiveRecord::Schema.define(version: 20170428182359) do
 
   create_table "frames", force: :cascade do |t|
     t.string   "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "ebay_id"
     t.datetime "ended_at"
     t.string   "ebay_url"
-    t.index ["ebay_id"], name: "index_frames_on_ebay_id", unique: true
+    t.string   "name"
   end
 
 end

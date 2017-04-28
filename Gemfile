@@ -17,10 +17,11 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'rack-cors'
 gem 'ruby-opencv', '~> 0.0.18'
 
-
 group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'byebug', platform: :mri
   gem 'pry-byebug'
 end

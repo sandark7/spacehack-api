@@ -17,7 +17,7 @@ class Frame < ApplicationRecord
 
   before_save :process_image, if: :fixture?
 
-  scope :latest, -> { order(:updated_at).first }
+  scope :latest, -> { order(:updated_at).last }
 
   def process_image
     remote_photo_url = ebay_url

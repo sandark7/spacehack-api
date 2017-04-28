@@ -22,3 +22,4 @@
 .rake_tasks
 config/.DS_Store
 .DS_Store
+public/uploads/

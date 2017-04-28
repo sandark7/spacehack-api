@@ -27,9 +27,9 @@
 ].each do |item|
   # URI(item[:ebay_url])
   # binding.pry
-  Frame.find_or_create_by!(
+  Frame.where(name: item[:name]).first_or_create!(
     ended_at: item[:ended_at].to_date,
-    name: item[:name],
-    ebay_url: item[:ebay_url]
+    ebay_url: item[:ebay_url],
+    remote_photo_url: item[:ebay_url]
   )
 end

@@ -1,24 +1,10 @@
-# README
+# spacehack-api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+1. Install Docker
+2. `docker-compose build`
 
-* Ruby version
+## Start
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. `docker-compose up`

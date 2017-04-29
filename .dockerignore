@@ -1,0 +1,11 @@
+tmp/*
+log/*
+db/*.sqlite3
+.env
+.env.sample
+.bundle
+
+.git
+.gitignore
+README.md
+.DS_Store

@@ -1,9 +1,19 @@
 class ContourExtract
-  attr_reader :photo, :tmp_file, :vision
+  attr_reader :photo, :tmp_file, :vision, :vision_original
 
   def initialize(photo)
+    kernel = OpenCV::IplConvKernel.new(5, 5, 2, 2, :ellipse)
+
     @photo = photo
+    @vision_original = OpenCV::CvMat.load(tmp_file_path(photo.url))
     @vision = OpenCV::CvMat.load(tmp_file_path(photo.url)).BGR2GRAY
+                                                          .smooth(OpenCV::CV_GAUSSIAN, 25, 25)
+                                                          .equalize_hist
+                                                          .threshold(0x22, 0xFF, OpenCV::CV_THRESH_BINARY_INV)
+                                                          .morphology(:close, kernel)
+    # binding.pry
+# .equalize_hist
+    #.threshold(0x33, 0xFF, OpenCV::CV_THRESH_BINARY_INV)#.morphology(:open, kernel)
   end
 
   def call
@@ -29,7 +39,7 @@ class ContourExtract
           puts "found external contour with bounding rectangle from #{box.top_left.x},#{box.top_left.y} to #{box.bottom_right.x},#{box.bottom_right.y}"
           puts "that contour encloses an area of #{contour.contour_area} square pixels"
           puts "that contour is #{contour.arc_length} pixels long "
-          # vision.rectangle! box.top_left, box.bottom_right, :color => OpenCV::CvColor::Red
+          vision.rectangle! box.top_left, box.bottom_right, :color => OpenCV::CvColor::Red
           box = contour.min_area_rect2
           tmp_external_contours << contour
           puts "found minimal rectangle with its center at (#{box.center.x.round},#{box.center.y.round}), width of #{box.size.width.round}px, height of #{box.size.height.round} and an angle of #{box.angle.round} degree"
@@ -41,18 +51,17 @@ class ContourExtract
   end
 
   def max_contour
-    contours.max { |a,b| a.contour_area <=> b.contour_area }
+    contours.max { |a,b| a.arc_length <=> b.arc_length }
   end
 
   def max_box
-    @max_box ||= max_contour.bounding_rect
+    @max_box ||= max_contour&.bounding_rect
   end
 
-  def save!
-    box = max_contour.bounding_rect
-
-    vision.rectangle! box.top_left, box.bottom_right, :color => OpenCV::CvColor::Red
-    vision.save_image("rotated-boxes-with-detected-bounding-rectangles.jpg")
+  def save!(original: true)
+    version = original ? vision_original : vision.GRAY2BGR
+    version.rectangle! max_box.top_left, max_box.bottom_right, color: OpenCV::CvColor::Green
+    version.save_image("build/#{photo.file.filename}")
   end
 
   def tmp_file_path(url)

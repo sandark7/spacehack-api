@@ -45,7 +45,7 @@ class ContourExtract
   end
 
   def max_box
-    @max_box ||= contour.bounding_rect
+    @max_box ||= max_contour.bounding_rect
   end
 
   def save!

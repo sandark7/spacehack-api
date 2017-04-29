@@ -15,8 +15,9 @@ class Frame < ApplicationRecord
   THUMBOR_HOST_URI = 'http://localhost:8081/unsafe/meta/smart/'
   mount_uploader :photo, FrameUploader
 
-  before_save :process_image, if: :fixture?
+  attr_reader :box
 
+  before_save :process_image, if: :fixture?
   scope :latest, -> { order(:updated_at).last }
 
   def process_image
@@ -31,6 +32,11 @@ class Frame < ApplicationRecord
     thumbor_meta.dig("thumbor", "focal_points").map do |point|
       { x: point["x"], y: point["y"] }
     end
+  end
+
+  def box
+    @box ||= ContourExtract.new(photo).max_box
+    # puts "found external contour with bounding rectangle from #{@box.top_left.x},#{@box.top_left.y} to #{@box.bottom_right.x},#{@box.bottom_right.y}"
   end
 
   def thumbor_url

@@ -15,7 +15,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
-gem 'ruby-opencv', '~> 0.0.18'
+gem 'ruby-opencv', '~> 0.0.18', require: 'opencv'
 
 group :development, :test do
   gem 'dotenv-rails'

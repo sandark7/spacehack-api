@@ -8,8 +8,8 @@ RSpec.describe ContourExtract, type: :model do
   describe 'extraction' do
     it do
       contour = ContourExtract.new(photo)
-      contour.boxx
-      # binding.pry
+      contour.contours
+      contour.save!
     end
   end
 end

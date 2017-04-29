@@ -24,3 +24,4 @@ config/.DS_Store
 .DS_Store
 public/uploads/
 .env
+rotated-boxes-with-detected-bounding-rectangles.jpg

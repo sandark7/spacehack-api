@@ -22,6 +22,8 @@ class Frame < ApplicationRecord
 
   def process_image
     remote_photo_url = ebay_url
+    ContourExtract.new(photo).save!
+    true
   end
 
   def fixture?

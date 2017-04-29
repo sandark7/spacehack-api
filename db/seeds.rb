@@ -2,6 +2,16 @@
   {
     ended_at: '22.05.17',
     name: "Alya Red Gray Striped Cotton Jersey Dress Long Sleeves Women's Size S Small NWT",
+    ebay_url: "http://i.ebayimg.com/00/s/NzgzWDUwMA==/z/yxEAAOSw44BYCYBI/$_1.JPG?set_id=880000500F;"
+  },
+  {
+    ended_at: '22.05.17',
+    name: "Alya Red Gray Striped Cotton Jersey Dress Long Sleeves Women's Size S Small NWT",
+    ebay_url: "http://i.ebayimg.com/00/s/MTU5M1gxMTcy/z/pZYAAOSw9GhYdbZW/$_12.JPG?set_id=880000500F;"
+  },
+  {
+    ended_at: '22.05.17',
+    name: "Alya Red Gray Striped Cotton Jersey Dress Long Sleeves Women's Size S Small NWT",
     ebay_url: "http://i.ebayimg.com/00/s/MTYwMFgxNjAw/z/UBIAAOSwzgBY0-k6/$_12.JPG?set_id=880000500F"
   },
   {

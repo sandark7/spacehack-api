@@ -28,10 +28,8 @@ mx = np.max(mask2)
 mask3 = np.uint8((mask2 - mn)*255/(mx - mn))
 
 alpha_channel = np.ones(mask3.shape, dtype=mask3.dtype) #creating a dummy alpha channel image.
-img_RGBA = cv2.merge((b_channel, g_channel, r_channel, mask3))
+img_RGBA = cv2.merge((r_channel, g_channel, b_channel, mask3))
 
-
-plt.figure()
 plt.imshow(img_RGBA)
-plt.colorbar()
 plt.show()
+

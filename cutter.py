@@ -22,7 +22,7 @@ class Cutter:
 
     # If mask==2 or mask== 1, mask2 get 0, other wise it gets 1 as 'uint8' type.
     mask2 = np.where((mask==2)|(mask==0),0,1).astype('uint8')
-    img_cut = img*mask2[:,:,np.newaxis]
+    # img_cut = img*mask2[:,:,np.newaxis]
     b_channel, g_channel, r_channel = cv2.split(img)
 
     mn = np.min(mask2)
@@ -30,4 +30,4 @@ class Cutter:
     mask3 = np.uint8((mask2 - mn)*255/(mx - mn))
 
     alpha_channel = np.ones(mask3.shape, dtype=mask3.dtype) #creating a dummy alpha channel image.
-    return cv2.merge((b_channel, g_channel, r_channel, mask3))
+    return cv2.merge((r_channel, g_channel, b_channel, mask3))

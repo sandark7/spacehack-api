@@ -11,9 +11,6 @@ class ContourExtract
                                                           .equalize_hist
                                                           .threshold(0x22, 0xFF, OpenCV::CV_THRESH_BINARY_INV)
                                                           .morphology(:close, kernel)
-    # binding.pry
-# .equalize_hist
-    #.threshold(0x33, 0xFF, OpenCV::CV_THRESH_BINARY_INV)#.morphology(:open, kernel)
   end
 
   def call

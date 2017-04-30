@@ -17,7 +17,7 @@ class Frame < ApplicationRecord
 
   attr_reader :box
 
-  before_save :process_image, if: :fixture?
+  # before_save :process_image, if: :fixture?
   scope :latest, -> { order(:updated_at).last }
 
   def process_image
@@ -37,6 +37,7 @@ class Frame < ApplicationRecord
   end
 
   def box
+    return if photo.filename
     @box ||= ContourExtract.new(photo).max_box
     # puts "found external contour with bounding rectangle from #{@box.top_left.x},#{@box.top_left.y} to #{@box.bottom_right.x},#{@box.bottom_right.y}"
   end

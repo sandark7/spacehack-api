@@ -3,7 +3,7 @@ class FramesController < ApplicationController
     frame = Frame.latest
     frame.update!(frame_params)
 
-    render json: frame
+    render status: :ok
   end
 
   def show
@@ -11,6 +11,6 @@ class FramesController < ApplicationController
   end
 
   def frame_params
-    params.require(:frame).permit(:photo, :name)
+    params.permit(:photo)
   end
 end

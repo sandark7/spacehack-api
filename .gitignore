@@ -26,3 +26,4 @@ public/uploads/
 .env
 rotated-boxes-with-detected-bounding-rectangles.jpg
 build
+__pycache__

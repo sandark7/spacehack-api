@@ -38,7 +38,6 @@ class Frame < ApplicationRecord
 
   def box
     @box ||= ContourExtract.new(photo).max_box
-    # puts "found external contour with bounding rectangle from #{@box.top_left.x},#{@box.top_left.y} to #{@box.bottom_right.x},#{@box.bottom_right.y}"
   end
 
   def thumbor_url

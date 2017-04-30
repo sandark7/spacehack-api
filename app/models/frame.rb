@@ -13,12 +13,12 @@
 
 class Frame < ApplicationRecord
   THUMBOR_HOST_URI = 'http://localhost:8081/unsafe/meta/smart/'
-  mount_uploader :photo, FrameUploader
+  mount_base64_uploader :photo, FrameUploader
 
   attr_reader :box
 
-  before_save :process_image, if: :fixture?
-  scope :latest, -> { order(:updated_at).last }
+  # before_save :process_image, if: :fixture?
+  scope :latest, -> { order(:updated_at).second }
 
   def process_image
     remote_photo_url = ebay_url
@@ -37,7 +37,9 @@ class Frame < ApplicationRecord
   end
 
   def box
+    return if photo.filename
     @box ||= ContourExtract.new(photo).max_box
+    # puts "found external contour with bounding rectangle from #{@box.top_left.x},#{@box.top_left.y} to #{@box.bottom_right.x},#{@box.bottom_right.y}"
   end
 
   def thumbor_url

@@ -64,6 +64,9 @@ GEM
     carrierwave-aws (1.1.0)
       aws-sdk (~> 2.0)
       carrierwave (>= 0.7, < 2.0)
+    carrierwave-base64 (2.5.0)
+      carrierwave (>= 0.8.0)
+      mime-types (~> 3.0)
     case_transform (0.2)
       activesupport
     coderay (1.1.1)
@@ -196,6 +199,7 @@ DEPENDENCIES
   byebug
   carrierwave (~> 1.0)
   carrierwave-aws
+  carrierwave-base64
   dotenv-rails
   factory_girl_rails
   faker

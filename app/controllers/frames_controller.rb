@@ -1,8 +1,7 @@
 class FramesController < ApplicationController
   def update
     frame = Frame.latest
-    frame.update!(frame_params)
-
+    # frame.update(photo: frame_params)
     render status: :ok
   end
 

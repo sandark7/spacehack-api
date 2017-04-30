@@ -23,7 +23,7 @@ def show(top_left_x, top_left_y, bottom_right_x, bottom_right_y):
     image_response = requests.get(image_url, stream=True)
     tmp_image = tempfile.NamedTemporaryFile(mode="wb")
     tmp_image.write(image_response.content)
-
+    print(image_response.content)
     print(tmp_image.name)
     # input_image = urllib.urlopen(image_url).read()
     # file = cStringIO.StringIO(input_image)
@@ -36,7 +36,6 @@ def show(top_left_x, top_left_y, bottom_right_x, bottom_right_y):
     im.save(img2, format="png")
     # return 'hello'
     img2.seek(0)
-
 
     return send_file(img2, mimetype='image/png')
 

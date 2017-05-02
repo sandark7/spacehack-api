@@ -13,17 +13,25 @@
 
 class Frame < ApplicationRecord
   THUMBOR_HOST_URI = 'http://localhost:8081/unsafe/meta/smart/'
-  mount_base64_uploader :photo, FrameUploader
+  mount_uploader :photo, FrameUploader
 
   attr_reader :box
 
   # before_save :process_image, if: :fixture?
-  scope :latest, -> { order(:updated_at).second }
+  scope :latest, -> { order(:updated_at).last }
 
   def process_image
     remote_photo_url = ebay_url
     ContourExtract.new(photo).save!
     true
+  end
+
+  def image_data=(data)
+    # decode data and create stream on them
+    io = CarrierStringIO.new(Base64.decode64(data))
+
+    # this will do the thing (photo is mounted carrierwave uploader)
+    self.photo = io
   end
 
   def fixture?

@@ -65,7 +65,7 @@ class ContourExtract
     @tmp_file_path ||= begin
       tmp_file = Tempfile.new(["#{photo.file.filename}"])
       tmp_file.binmode
-      open(url) do |url_file|
+      open("http://localhost:8082/#{url}") do |url_file|
         tmp_file.write(url_file.read)
       end
       tmp_file.rewind

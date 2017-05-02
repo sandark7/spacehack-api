@@ -19,12 +19,29 @@ app = Flask(__name__)
 
 @app.route("/<int:top_left_x>/<int:top_left_y>/<int:bottom_right_x>/<int:bottom_right_y>")
 def show(top_left_x, top_left_y, bottom_right_x, bottom_right_y):
+    print('------------------------------------------------------')
     image_url = request.args.get('image_url')
     image_response = requests.get(image_url, stream=True)
     tmp_image = tempfile.NamedTemporaryFile(mode="wb")
     tmp_image.write(image_response.content)
-    print(image_response.content)
-    print(tmp_image.name)
+
+    #
+    top_left_x     = max(top_left_x, 0)
+    top_left_y     = max(top_left_y, 0)
+    bottom_right_x = max(bottom_right_x, 0)
+    bottom_right_y = max(bottom_right_y, 0)
+
+    # print(image_response.content)
+    # print(tmp_image.name)
+    # if top_left_x < 0
+    #     top_left_x = 0
+    # if top_left_y < 0
+    #     top_left_y = 0
+    # if bottom_right_x < 0
+    #     bottom_right_x = 0
+    # if bottom_right_y < 0
+    #     bottom_right_y = 0
+
     # input_image = urllib.urlopen(image_url).read()
     # file = cStringIO.StringIO(input_image)
     rectangle = (top_left_x, top_left_y, bottom_right_x, bottom_right_y)

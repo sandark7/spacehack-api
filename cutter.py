@@ -18,7 +18,7 @@ class Cutter:
     bgdModel = np.zeros((1,65),np.float64)
     fgdModel = np.zeros((1,65),np.float64)
 
-    cv2.grabCut(img,mask,self.rectangle,bgdModel,fgdModel,5,mode=cv2.GC_INIT_WITH_RECT)
+    cv2.grabCut(img,mask,self.rectangle,bgdModel,fgdModel,10,mode=cv2.GC_INIT_WITH_RECT)
 
     # If mask==2 or mask== 1, mask2 get 0, other wise it gets 1 as 'uint8' type.
     mask2 = np.where((mask==2)|(mask==0),0,1).astype('uint8')
